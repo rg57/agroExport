@@ -1,4 +1,6 @@
-import React, { useState } from "react"
+"use client"
+
+import { useState } from "react"
 import { Link as RouterLink } from "react-router-dom"
 import {
   AppBar,
@@ -37,36 +39,39 @@ const Header = () => {
     <AppBar
       position="sticky"
       sx={{
-        bgcolor: "#4caf50",
-        width: "100%",
+        bgcolor: "primary.main",
+        boxShadow: 3,
       }}
     >
-      <Container maxWidth="lg">
-        <Toolbar
-          sx={{
-            px: { xs: 0, sm: 2 },
-            justifyContent: "space-between",
-            width: "100%",
-          }}
-        >
-          <Typography
-            variant="h6"
-            component={RouterLink}
-            to="/"
-            sx={{
-              textDecoration: "none",
-              color: "inherit",
-              fontWeight: 700,
-              fontSize: { xs: "1.2rem", sm: "1.5rem" },
-            }}
-          >
-            Agro Export India
-          </Typography>
+      <Container maxWidth="xl">
+        <Toolbar sx={{ justifyContent: "space-between", py: 1 }}>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <img
+              src="/placeholder.svg?height=50&width=50"
+              alt="Hilly Agro Logo"
+              style={{ marginRight: "10px", height: "50px" }}
+            />
+            <Typography
+              variant="h6"
+              component={RouterLink}
+              to="/"
+              sx={{
+                textDecoration: "none",
+                color: "inherit",
+                fontWeight: 700,
+                fontSize: { xs: "1.2rem", sm: "1.5rem" },
+                fontFamily: "'Montserrat', sans-serif",
+              }}
+            >
+              Hilly Agro
+            </Typography>
+          </Box>
 
           {isMobile ? (
             <IconButton
               color="inherit"
-              edge="end"
+              aria-label="open drawer"
+              edge="start"
               onClick={() => setMobileOpen(true)}
             >
               <MenuIcon />
@@ -96,19 +101,19 @@ const Header = () => {
                 sx={{
                   color: "inherit",
                   ".MuiOutlinedInput-notchedOutline": {
-                    borderColor: "rgba(255,255,255,0.3)",
-                  },
-                  "&:hover .MuiOutlinedInput-notchedOutline": {
                     borderColor: "rgba(255,255,255,0.5)",
                   },
-                  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                  "&:hover .MuiOutlinedInput-notchedOutline": {
                     borderColor: "rgba(255,255,255,0.7)",
+                  },
+                  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "rgba(255,255,255,1)",
                   },
                 }}
                 size="small"
               >
                 <MenuItem value="en">English</MenuItem>
-                <MenuItem value="ar">العربية</MenuItem>
+                <MenuItem value="hi">हिंदी</MenuItem>
               </Select>
             </Box>
           )}
@@ -121,12 +126,13 @@ const Header = () => {
         onClose={() => setMobileOpen(false)}
         sx={{
           "& .MuiDrawer-paper": {
-            width: 280,
+            width: 240,
+            bgcolor: "background.paper",
           },
         }}
       >
         <Box sx={{ p: 2 }}>
-          <Typography variant="h6" sx={{ mb: 2 }}>
+          <Typography variant="h6" sx={{ mb: 2, fontWeight: 600 }}>
             Menu
           </Typography>
           <List>
@@ -137,7 +143,7 @@ const Header = () => {
                 to={item.path}
                 onClick={() => setMobileOpen(false)}
                 sx={{
-                  color: "inherit",
+                  color: "text.primary",
                   textDecoration: "none",
                 }}
               >
@@ -145,6 +151,17 @@ const Header = () => {
               </ListItem>
             ))}
           </List>
+          <Box sx={{ mt: 2 }}>
+            <Select
+              value={language}
+              onChange={(e) => setLanguage(e.target.value)}
+              fullWidth
+              size="small"
+            >
+              <MenuItem value="en">English</MenuItem>
+              <MenuItem value="hi">हिंदी</MenuItem>
+            </Select>
+          </Box>
         </Box>
       </Drawer>
     </AppBar>

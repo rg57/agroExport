@@ -14,19 +14,39 @@ import ProductDetailsPage from "./pages/ProductDetailsPage"
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#4caf50",
+      main: "#2e7d32", // A deep green representing the lush forests of Uttarakhand
     },
     secondary: {
-      main: "#ff9800",
+      main: "#795548", // A earthy brown color
+    },
+    background: {
+      default: "#f1f8e9", // A light green tint for the background
+    },
+  },
+  typography: {
+    fontFamily: "'Poppins', 'Helvetica', 'Arial', sans-serif",
+    h1: {
+      fontWeight: 700,
+    },
+    h2: {
+      fontWeight: 600,
+    },
+    h3: {
+      fontWeight: 600,
     },
   },
   components: {
-    MuiContainer: {
+    MuiButton: {
       styleOverrides: {
         root: {
-          "@media (min-width: 1200px)": {
-            maxWidth: "1400px",
-          },
+          borderRadius: 8,
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          borderRadius: 12,
         },
       },
     },
@@ -45,11 +65,8 @@ function App() {
               flexDirection: "column",
               minHeight: "100vh",
               width: "100%",
-              backgroundColor: "white",
-
-              margin: "0 auto",
-              fontFamily: "Poppins, sans-serif",
-              boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+              backgroundImage: 'url("/placeholder.svg?height=200&width=200")', // Replace with a subtle pattern or texture
+              backgroundRepeat: "repeat",
             }}
           >
             <Header />

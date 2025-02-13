@@ -1,4 +1,3 @@
-import React from "react"
 import {
   Box,
   Container,
@@ -6,108 +5,102 @@ import {
   Typography,
   Link,
   IconButton,
-  Divider,
 } from "@mui/material"
 import { Facebook, Twitter, Instagram, LinkedIn } from "@mui/icons-material"
 import { Link as RouterLink } from "react-router-dom"
-import { useLanguage } from "../contexts/LanguageContext"
 
 const Footer = () => {
-  const { t } = useLanguage()
-
-  const socialLinks = [
-    { icon: <Facebook />, url: "#", name: "Facebook" },
-    { icon: <Twitter />, url: "#", name: "Twitter" },
-    { icon: <Instagram />, url: "#", name: "Instagram" },
-    { icon: <LinkedIn />, url: "#", name: "LinkedIn" },
-  ]
-
   return (
     <Box
       component="footer"
       sx={{
-        bgcolor: "background.paper",
-        py: { xs: 6, md: 8 },
-        borderTop: 1,
-        borderColor: "divider",
+        bgcolor: "primary.main",
+        color: "common.white",
+        py: 6,
+        borderTop: "1px solid",
+        borderColor: "rgba(255, 255, 255, 0.1)",
       }}
     >
       <Container maxWidth="lg">
         <Grid container spacing={4}>
           <Grid item xs={12} sm={6} md={3}>
-            <Typography variant="h6" color="text.primary" gutterBottom>
-              Agro Export India
+            <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
+              Hilly Agro
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {t("footerAboutText")}
+            <Typography variant="body2">
+              Bringing the organic goodness of Uttarakhand to the world. Pure,
+              natural, and sustainably sourced.
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <Typography variant="h6" color="text.primary" gutterBottom>
-              {t("quickLinks")}
+            <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
+              Quick Links
             </Typography>
-            <Box component="ul" sx={{ m: 0, p: 0, listStyle: "none" }}>
-              {["home", "products", "aboutUs", "contactUs"].map((item) => (
-                <Box component="li" key={item} sx={{ pb: 1 }}>
-                  <Link
-                    component={RouterLink}
-                    to={item === "home" ? "/" : `/${item.toLowerCase()}`}
-                    color="text.secondary"
-                    sx={{
-                      textDecoration: "none",
-                      "&:hover": { color: "primary.main" },
-                    }}
-                  >
-                    {t(item)}
-                  </Link>
-                </Box>
+            <Box component="nav">
+              {["Home", "Products", "About Us", "Contact Us"].map((item) => (
+                <Link
+                  key={item}
+                  component={RouterLink}
+                  to={
+                    item === "Home"
+                      ? "/"
+                      : `/${item.toLowerCase().replace(" ", "")}`
+                  }
+                  sx={{
+                    display: "block",
+                    color: "inherit",
+                    textDecoration: "none",
+                    mb: 1,
+                    "&:hover": {
+                      textDecoration: "underline",
+                    },
+                  }}
+                >
+                  {item}
+                </Link>
               ))}
             </Box>
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <Typography variant="h6" color="text.primary" gutterBottom>
-              {t("contact")}
+            <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
+              Contact
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              123 Export Street
+            <Typography variant="body2" paragraph>
+              123 Mountain View Road
+              <br />
+              Dehradun, Uttarakhand
+              <br />
+              India
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Mumbai, India
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Email: info@agroexport.com
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Tel: +91 123 456 7890
+            <Typography variant="body2">
+              Email: info@hillyagro.com
+              <br />
+              Tel: +91 135 2345 6789
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <Typography variant="h6" color="text.primary" gutterBottom>
-              {t("followUs")}
+            <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
+              Follow Us
             </Typography>
-            <Box sx={{ display: "flex", gap: 1 }}>
-              {socialLinks.map((social) => (
+            <Box sx={{ display: "flex", gap: 2 }}>
+              {[Facebook, Twitter, Instagram, LinkedIn].map((Icon, index) => (
                 <IconButton
-                  key={social.name}
-                  component="a"
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  key={index}
                   sx={{
-                    color: "text.secondary",
-                    "&:hover": { color: "primary.main" },
+                    color: "common.white",
+                    "&:hover": {
+                      bgcolor: "rgba(255, 255, 255, 0.1)",
+                    },
                   }}
                 >
-                  {social.icon}
+                  <Icon />
                 </IconButton>
               ))}
             </Box>
           </Grid>
         </Grid>
-        <Divider sx={{ mt: 6, mb: 4 }} />
-        <Typography variant="body2" color="text.secondary" align="center">
-          © {new Date().getFullYear()} Agro Export India.{" "}
-          {t("allRightsReserved")}
+        <Typography variant="body2" align="center" sx={{ mt: 4, opacity: 0.7 }}>
+          © {new Date().getFullYear()} Hilly Agro. All rights reserved.
         </Typography>
       </Container>
     </Box>
