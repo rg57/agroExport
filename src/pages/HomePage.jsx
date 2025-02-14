@@ -11,6 +11,7 @@ import {
 import { Link as RouterLink } from "react-router-dom"
 import { motion } from "framer-motion"
 import { useLanguage } from "../contexts/LanguageContext"
+import heroBanner from "../assets/agro_export_banner.jpg"
 
 const MotionBox = motion(Box)
 
@@ -25,7 +26,7 @@ const HomePage = () => {
           width: "100%",
           bgcolor: "rgba(255,255,255,0.8)",
           py: { xs: 6, md: 12 },
-          backgroundImage: 'url("/placeholder.svg?height=800&width=1200")', // Replace with an image of Uttarakhand mountains
+          backgroundImage: `url(${heroBanner})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           position: "relative",
